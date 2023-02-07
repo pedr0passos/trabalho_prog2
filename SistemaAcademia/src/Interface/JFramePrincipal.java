@@ -5,13 +5,19 @@
 package Interface;
 
 import java.awt.CardLayout;
+import java.lang.*;
+import Model.*;
+import java.util.*;
 
 /**
  *
  * @author pedro
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-
+    
+    public static boolean janelaCadastro;
+    private ArrayList<Cliente> listaClientes = new ArrayList<>();
+            
     public JFramePrincipal() {
         initComponents();
     }
@@ -20,7 +26,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
         panelPrincipal = new javax.swing.JPanel();
         panelMenu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -31,27 +36,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
         panelCadastroCliente = new javax.swing.JPanel();
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
-        textfieldNome = new javax.swing.JTextField();
+        campoTelefoneCliente = new javax.swing.JTextField();
         labelNomeCliente = new javax.swing.JLabel();
         comboBoxIdadeCliente = new javax.swing.JComboBox<>();
         labelIdadeCliente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNomeCliente = new javax.swing.JTextField();
         labelTelefoneCliente = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        botaoCriarFicha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DecaGym");
         setForeground(java.awt.Color.darkGray);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panelPrincipal.setForeground(new java.awt.Color(60, 63, 65));
         panelPrincipal.setLayout(new java.awt.CardLayout());
@@ -93,13 +93,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2))
                     .addGroup(panelMenuLayout.createSequentialGroup()
-                        .addContainerGap(174, Short.MAX_VALUE)
+                        .addContainerGap(188, Short.MAX_VALUE)
                         .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jButton1)
                             .addComponent(labelTitulo)
                             .addComponent(botaoListarClientes)
                             .addComponent(botaoCadastroFichas1))))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,29 +141,40 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         labelTelefoneCliente.setText("Telefone:");
 
+        botaoCriarFicha.setText("Adicionar Ficha");
+        botaoCriarFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCriarFichaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCadastroClienteLayout = new javax.swing.GroupLayout(panelCadastroCliente);
         panelCadastroCliente.setLayout(panelCadastroClienteLayout);
         panelCadastroClienteLayout.setHorizontalGroup(
             panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroClienteLayout.createSequentialGroup()
                 .addContainerGap(94, Short.MAX_VALUE)
-                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoCancelar)
-                    .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelTelefoneCliente)
+                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTelefoneCliente)
+                    .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(botaoCancelar)
                         .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                                    .addComponent(textfieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(98, 98, 98)
-                                    .addComponent(botaoSalvar))
-                                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelNomeCliente)))
-                            .addGap(51, 51, 51)
+                                    .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botaoCriarFicha))
+                                .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelNomeCliente))
                             .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelIdadeCliente)
-                                .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                                    .addGap(72, 72, 72)
+                                    .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelIdadeCliente)
+                                        .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                                    .addGap(70, 70, 70)
+                                    .addComponent(botaoSalvar))))))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         panelCadastroClienteLayout.setVerticalGroup(
@@ -176,15 +187,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(labelTelefoneCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textfieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoSalvar)
-                    .addComponent(botaoCancelar))
-                .addContainerGap(148, Short.MAX_VALUE))
+                    .addComponent(botaoCriarFicha))
+                .addGap(9, 9, 9)
+                .addComponent(botaoCancelar)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(panelCadastroCliente, "telacadastro");
@@ -215,25 +228,41 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoListarClientesActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoListarClientesActionPerformed
 
     private void botaoCadastroFichas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastroFichas1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoCadastroFichas1ActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        InternalFrameConfirmacaoFicha obj = new InternalFrameConfirmacaoFicha();
-        JFramePrincipal.add(obj);
-        obj.setVisible(true);
+        if ( !campoNomeCliente.getText().isEmpty() && !campoTelefoneCliente.getText().isEmpty() ) {
+            Cliente novoCliente = new Cliente(campoNomeCliente.getText(), comboBoxIdadeCliente.getSelectedIndex()+1, campoTelefoneCliente.getText());
+            Cliente.id++;
+            campoNomeCliente.setText("");
+            campoTelefoneCliente.setText("");
+            comboBoxIdadeCliente.setSelectedIndex(0);
+            listaClientes.add(novoCliente);
+            Collections.sort(listaClientes);
+            System.out.println(listaClientes.toString());
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+    private void botaoCriarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarFichaActionPerformed
+        if ( !JFramePrincipal.janelaCadastro ) {
+            JFrameAdicionaFicha telaAdicionaFicha = new JFrameAdicionaFicha();
+            telaAdicionaFicha.show(true);  
+        }
+    }//GEN-LAST:event_botaoCriarFichaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.setExtendedState(MAXIMIZED_BOTH);
+        JFramePrincipal.janelaCadastro = false;
+        Cliente.id = 0;
+    }//GEN-LAST:event_formWindowOpened
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -252,24 +281,25 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JFramePrincipal().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastroFichas1;
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoCriarFicha;
     private javax.swing.JButton botaoListarClientes;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.JTextField campoNomeCliente;
+    private javax.swing.JTextField campoTelefoneCliente;
     private javax.swing.JComboBox<String> comboBoxIdadeCliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelIdadeCliente;
     private javax.swing.JLabel labelNomeCliente;
     private javax.swing.JLabel labelTelefoneCliente;
@@ -277,6 +307,5 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelCadastroCliente;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTextField textfieldNome;
     // End of variables declaration//GEN-END:variables
 }
