@@ -7,7 +7,6 @@ import java.util.*;
 
 public class JFramePrincipal extends javax.swing.JFrame {
     
-    public static boolean janelaCadastro;
     private FichaExercicios fichaAuxiliar;
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     
@@ -37,11 +36,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         labelIdadeCliente = new javax.swing.JLabel();
         campoNomeCliente = new javax.swing.JTextField();
         labelTelefoneCliente = new javax.swing.JLabel();
-        botaoCriarFicha = new javax.swing.JButton();
+        botaoAdicionarFicha = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoFichaExercicio = new javax.swing.JTextArea();
-        labelFichaCliente = new javax.swing.JLabel();
-        botaoLimpaFicha = new javax.swing.JButton();
+        botaoCriaFicha = new javax.swing.JButton();
+        labelFicha = new javax.swing.JLabel();
+        campoNomeFicha = new javax.swing.JTextField();
+        labelExercicios = new javax.swing.JLabel();
         panelListarClientes = new javax.swing.JPanel();
         botaoSairListagem = new javax.swing.JButton();
         labelTituloListagem = new javax.swing.JLabel();
@@ -177,10 +178,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         labelTelefoneCliente.setText("Telefone:");
 
-        botaoCriarFicha.setText("Adicionar Ficha");
-        botaoCriarFicha.addActionListener(new java.awt.event.ActionListener() {
+        botaoAdicionarFicha.setText("Adicionar Ficha");
+        botaoAdicionarFicha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarFichaActionPerformed(evt);
+                botaoAdicionarFichaActionPerformed(evt);
             }
         });
 
@@ -189,76 +190,90 @@ public class JFramePrincipal extends javax.swing.JFrame {
         campoFichaExercicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane1.setViewportView(campoFichaExercicio);
 
-        labelFichaCliente.setText("Ficha:");
-
-        botaoLimpaFicha.setText("Limpar Ficha");
-        botaoLimpaFicha.addActionListener(new java.awt.event.ActionListener() {
+        botaoCriaFicha.setText("Criar Ficha");
+        botaoCriaFicha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoLimpaFichaActionPerformed(evt);
+                botaoCriaFichaActionPerformed(evt);
             }
         });
+
+        labelFicha.setText("Nome Ficha:");
+
+        labelExercicios.setText("Exercicios:");
 
         javax.swing.GroupLayout panelCadastroClienteLayout = new javax.swing.GroupLayout(panelCadastroCliente);
         panelCadastroCliente.setLayout(panelCadastroClienteLayout);
         panelCadastroClienteLayout.setHorizontalGroup(
             panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelefoneCliente)
-                    .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(labelFichaCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelNomeCliente))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelIdadeCliente)
-                                .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botaoCriarFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botaoLimpaFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(112, 112, 112)
-                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(botaoSairCadastro)
-                                .addComponent(botaoSalvar)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(campoNomeFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFicha)
+                    .addComponent(labelExercicios)
+                    .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                        .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroClienteLayout.createSequentialGroup()
+                                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelNomeCliente)
+                                    .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(41, 41, 41)
+                                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelTelefoneCliente)
+                                    .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34))
+                            .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botaoCriaFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botaoAdicionarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(112, 112, 112)))
+                        .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoSairCadastro)
+                            .addComponent(botaoSalvar)
+                            .addComponent(labelIdadeCliente)
+                            .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         panelCadastroClienteLayout.setVerticalGroup(
             panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroClienteLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIdadeCliente)
-                    .addComponent(labelNomeCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroClienteLayout.createSequentialGroup()
+                        .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelIdadeCliente)
+                            .addComponent(labelNomeCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxIdadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroClienteLayout.createSequentialGroup()
                         .addComponent(labelTelefoneCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(labelFichaCliente)
+                        .addComponent(campoTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(labelFicha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroClienteLayout.createSequentialGroup()
-                        .addComponent(botaoCriarFicha)
-                        .addGap(9, 9, 9)
-                        .addComponent(botaoLimpaFicha))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroClienteLayout.createSequentialGroup()
-                        .addComponent(botaoSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoSairCadastro)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(campoNomeFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelExercicios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botaoCriaFicha)
+                                .addComponent(botaoAdicionarFicha))
+                            .addGroup(panelCadastroClienteLayout.createSequentialGroup()
+                                .addComponent(botaoSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoSairCadastro)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(panelCadastroCliente, "telacadastro");
@@ -337,6 +352,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jScrollPane5.setViewportView(campoClienteBuscado);
 
         comboBoxTreinos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C\t" }));
+        comboBoxTreinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTreinosActionPerformed(evt);
+            }
+        });
 
         labelSeletorTreino.setText("Treino:");
 
@@ -410,6 +430,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarClienteActionPerformed
+        comboBoxIdadeCliente.setSelectedIndex(0);
+        campoNomeCliente.setText("");
+        campoTelefoneCliente.setText("");
+        
+        labelFicha.setVisible(false);
+        labelExercicios.setVisible(false);
+        botaoAdicionarFicha.setVisible(false);
+        campoNomeFicha.setVisible(false);
+        campoFichaExercicio.setVisible(false);
+        botaoCriaFicha.setVisible(true);
         CardLayout telaCadastro = (CardLayout) panelPrincipal.getLayout();
         telaCadastro.show(panelPrincipal,"telacadastro");
     }//GEN-LAST:event_botaoCadastrarClienteActionPerformed
@@ -451,25 +481,30 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-    private void botaoCriarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarFichaActionPerformed
+    private void botaoAdicionarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarFichaActionPerformed
         if ( !campoFichaExercicio.getText().isEmpty() ) {
             FichaExercicios novaFicha = new FichaExercicios();
             novaFicha.adicionaExercicio(campoFichaExercicio.getText());
             fichaAuxiliar = novaFicha;
             campoFichaExercicio.setText("");
         }
-    }//GEN-LAST:event_botaoCriarFichaActionPerformed
+    }//GEN-LAST:event_botaoAdicionarFichaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setExtendedState(MAXIMIZED_BOTH);
-        JFramePrincipal.janelaCadastro = false;
         Cliente.id = 0;
     }//GEN-LAST:event_formWindowOpened
 
-    private void botaoLimpaFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimpaFichaActionPerformed
-        if (!campoFichaExercicio.getText().isEmpty() )
-            campoFichaExercicio.setText("");
-    }//GEN-LAST:event_botaoLimpaFichaActionPerformed
+    private void botaoCriaFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriaFichaActionPerformed
+        if ( !campoNomeCliente.getText().isEmpty() && !campoTelefoneCliente.getText().isEmpty() ) {
+            labelFicha.setVisible(true);
+            labelExercicios.setVisible(true);
+            botaoAdicionarFicha.setVisible(true);
+            campoNomeFicha.setVisible(true);
+            campoFichaExercicio.setVisible(true);
+            botaoCriaFicha.setVisible(false);
+        } 
+    }//GEN-LAST:event_botaoCriaFichaActionPerformed
 
     private void botaoSairListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairListagemActionPerformed
         CardLayout telaMenu = (CardLayout) panelPrincipal.getLayout();
@@ -530,6 +565,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoMostrarTreinosActionPerformed
 
+    private void comboBoxTreinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTreinosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTreinosActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -561,12 +600,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SairPrograma;
     private javax.swing.JTextArea areaTextoListaClientes;
+    private javax.swing.JButton botaoAdicionarFicha;
     private javax.swing.JButton botaoBusca;
     private javax.swing.JButton botaoBuscarCliente;
     private javax.swing.JButton botaoCadastrarCliente;
     private javax.swing.JButton botaoCadastrarFichas;
-    private javax.swing.JButton botaoCriarFicha;
-    private javax.swing.JButton botaoLimpaFicha;
+    private javax.swing.JButton botaoCriaFicha;
     private javax.swing.JButton botaoListarClientes;
     private javax.swing.JButton botaoMostrarTreinos;
     private javax.swing.JButton botaoSairBusca;
@@ -577,6 +616,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JTextArea campoClienteBuscado;
     private javax.swing.JTextArea campoFichaExercicio;
     private javax.swing.JTextField campoNomeCliente;
+    private javax.swing.JTextField campoNomeFicha;
     private javax.swing.JTextField campoTelefoneCliente;
     private javax.swing.JTextArea campoTreinoClienteBuscado;
     private javax.swing.JComboBox<String> comboBoxIdadeCliente;
@@ -586,7 +626,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelAutores;
-    private javax.swing.JLabel labelFichaCliente;
+    private javax.swing.JLabel labelExercicios;
+    private javax.swing.JLabel labelFicha;
     private javax.swing.JLabel labelIdadeCliente;
     private javax.swing.JLabel labelNomeBuscado;
     private javax.swing.JLabel labelNomeCliente;

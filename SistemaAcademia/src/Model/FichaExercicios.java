@@ -1,20 +1,18 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class FichaExercicios {
     
     private String nome;
     private String exercicios;
     
-    public void adicionaExercicio ( String exercicios ) {
-        this.exercicios = exercicios;
+    public void adicionaExercicio ( String exercicio ) {
+        exercicios = exercicio;
     }
     
     public String getNome () {
         return this.nome;
-    }
-    
-    public String getExercicios () {
-        return this.exercicios;
     }
     
 }
