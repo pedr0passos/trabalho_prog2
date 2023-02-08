@@ -35,6 +35,9 @@ public class Cliente implements Comparable<Cliente> {
     public String getTelefone() {
         return this.telefone;
     }
+    public int getIdentificador() {
+        return this.identificador;
+    }
     // fim getters
     
     public void adicionaFicha( FichaExercicios ficha ) {
@@ -43,7 +46,7 @@ public class Cliente implements Comparable<Cliente> {
     
     @Override 
     public String toString() {
-        return (" Nome: " + this.nome + "| Idade: " + this.idade + "| Telefone: " + this.telefone + "| Id: " + this.identificador + "\n" );
+        return (" Nome: " + this.nome + "| Idade: " + this.idade + "| Telefone: " + this.telefone + "| Id: " + this.identificador + "\n" + " Fichas: " + this.fichas );
     }
         
 }

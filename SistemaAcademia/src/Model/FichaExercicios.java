@@ -1,13 +1,20 @@
 package Model;
 
 public class FichaExercicios {
-    private String ficha;
     
-    public String getFicha () {
-        return this.ficha;
+    private String nome;
+    private String exercicios;
+    
+    public void adicionaExercicio ( String exercicios ) {
+        this.exercicios = exercicios;
     }
     
-    public FichaExercicios ( String ficha ) {
-        this.ficha = ficha;
+    public String getNome () {
+        return this.nome;
     }
+    
+    public String getExercicios () {
+        return this.exercicios;
+    }
+    
 }
