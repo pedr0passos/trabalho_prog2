@@ -2,27 +2,23 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Cliente implements Comparable<Cliente> {
-    
-    public static int id;
+public class Cliente implements Comparable<Cliente> {    
     
     private String nome;
     private String telefone;
     private int idade;
-    private int identificador;
-    private ArrayList<FichaExercicios> fichas = new ArrayList<>();
+    private ArrayList<FichaExercicios> fichas;
     
     @Override 
     public int compareTo(Cliente outroAluno) { 
-        return (this.getNome().compareTo(outroAluno.getNome()));
+        return (this.getNome().compareTo(outroAluno.getNome().toUpperCase()));
     }
     
     // construtor 
     public Cliente ( String nome, int idade, String telefone ) {
         this.nome = nome;
         this.idade = idade;
-        this.telefone = telefone;
-        this.identificador = Cliente.id+1;
+        this.telefone = telefone;        
     }
     
     // getters
@@ -35,18 +31,22 @@ public class Cliente implements Comparable<Cliente> {
     public String getTelefone() {
         return this.telefone;
     }
-    public int getIdentificador() {
-        return this.identificador;
+    public ArrayList<FichaExercicios> getFicha() {
+        return this.fichas;
     }
     // fim getters
     
-    public void adicionaFicha( FichaExercicios ficha ) {
+    public void adicionaFicha( ArrayList<FichaExercicios> ficha ) {
+        fichas = new ArrayList<>(ficha);
+    }
+    
+    public void adicionaFichaUnica ( FichaExercicios ficha ) {
         fichas.add(ficha);
     }
     
     @Override 
     public String toString() {
-        return (" Nome: " + this.nome + "| Idade: " + this.idade + "| Telefone: " + this.telefone + "| Id: " + this.identificador + "\n" + " Fichas: " + this.fichas );
+        return (" Nome: " + this.nome + "| Idade: " + this.idade + "| Telefone: " + this.telefone + "| Id: " +  "\n" + " Fichas: " + this.fichas );
     }
         
 }
