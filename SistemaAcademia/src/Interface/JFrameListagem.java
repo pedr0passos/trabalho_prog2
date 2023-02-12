@@ -1,8 +1,6 @@
 package Interface;
 
 import javax.swing.*;
-import java.util.*;
-import Model.*;
 import Main.*;
 
 
